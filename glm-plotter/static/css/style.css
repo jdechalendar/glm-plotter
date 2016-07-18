@@ -1,0 +1,144 @@
+/* General formatting */
+.col {
+  width: 960px;
+  margin: 0 auto;
+  border: solid 1px #eee;
+}
+
+#main {
+  position:relative;
+  max-width: 1000px;
+  display: block;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+#fileChooser {
+  margin: auto;
+  width: 50%;
+
+}
+
+/* Format nodes */
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+  cursor: move;
+}
+.node text {
+  stroke-width: 0px;
+  font-family:"Verdana";
+  font-size:10px;
+}
+circle.load {
+  fill:rgb(31, 119, 180);
+  fill:rgb(174, 199, 232);
+  fill:rgb(69, 179, 255);
+}
+.node.load.capacitor circle {
+  fill:rgb(140, 86, 75);
+  fill:rgb(31, 119, 180);
+}
+circle.node {
+  fill:rgb(174, 199, 232);
+  fill:#999;
+  fill:#d3d3d3;
+}
+.node.diesel_dg circle {
+  fill:rgb(148, 103, 189);
+  fill:rgb(204,204,0);
+  fill:rgb(255,169,44);
+}
+circle.meter {
+  fill:rgb(44, 160, 44);
+  fill:rgb(178, 106, 0);
+}
+.highlight {
+	fill: #FF0000;
+	font-weight:bold;
+}
+
+.node:hover circle {
+  fill: #000;
+  fill: #FF0000;
+}
+.node.load.capacitor:hover circle {
+  fill: #000;
+  fill: #FF0000;
+}
+
+.node g {
+  display:none;
+  font-family:"Verdana";
+  font-size: 16px;
+}
+.node:hover g {
+  display:inline;
+}
+
+/* Format links */
+.link {
+  stroke: #999;
+  stroke-opacity: .8;
+  stroke-width: 3px;
+}
+.link.overhead_line {
+    stroke: #999;
+    stroke:rgb(211,211,211);
+}
+.link.underground_line {
+    stroke: rgb(211,211,211);
+    stroke-dasharray: 5,2;
+}
+.link.switch {
+    stroke: #000000;
+    stroke:rgb(100,100,100);
+    stroke-dasharray: 10,10;
+}
+.link.regulator {
+    stroke: #0000FF;
+    stroke:rgb(70,70,70);
+    stroke-width: 5px;
+}
+.link.transformer {
+    stroke:rgb(255,169,44);
+    stroke-width: 8px;
+}
+.link text {
+  stroke-width: 0px;
+  font-family:"Verdana";
+  font-size:16px;
+  display:none;
+}
+.link:hover line {
+  stroke:#000000;
+}
+.link:hover text {
+  display:inline;
+}
+
+/* Legend */
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; }
+.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+.legend .overhead { background-color: #999; }
+.legend .underground { background-color: #00FF00; }
+.legend .sw { background-color: #FF0000; }
+.legend .reg { background-color: #0000FF; }
+.legend .trans { background-color: #FFFF00; }
+
+/* Footer */
+#footer-wrap {
+  font-size: 95%;
+  padding: 20px 0;
+}
+
+#footer {
+  clear: both;
+  color: #666;  
+  margin: 0 auto 10px auto; 
+  width: 850px;
+  padding: 5px 0;
+  text-align: center;
+  border-top: 1px solid #F2F2F2;  
+}

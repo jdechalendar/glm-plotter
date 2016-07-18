@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head><link rel="stylesheet" href="static/css/style.css"></head>
+<style>body { font: 12px Arial;}</style>
+<body>
+<div id="fileChooser">
+	<form action="/" method="post" enctype="multipart/form-data">
+	    <input type="file" name="glm_file" value="e"/>
+	    <input type="submit" value="Submit glm model" />
+	</form>
+</div>
+<div id="main"></div>
+<script src="static/lib/js/d3.js"></script>
+
+<script src="static/js/plotNetwork.js"></script>
+
+
+
+<!--
+<div>
+Legend:
+<ul class="legend">
+    <li><span class="overhead"></span> Overhead Line</li>
+    <li><span class="underground"></span> Underground Line</li>
+    <li><span class="sw"></span> Switch</li>
+	<li><span class="reg"></span> Regulator</li>
+    <li><span class="trans"></span> Transformer</li>
+</ul>
+</div>
+<div id="chart" style="display:none;"> Hidden chart</div>
+
+-->
+
+<!--
+    This was to add a chart that I can update interactively. Am not sure what I want to put in that chart yet.
+<script src="chart.js"></script>
+
+-->
+<div>
+	<h2>Options</h2>
+<div id="option">
+    <input name="saveButton" 
+           type="button" 
+           value="save XY coords of all nodes" 
+           onclick="saveXY()" />
+</div>
+<div id="option">
+    <input name="saveFixedButton" 
+           type="button" 
+           value="save XY coords of fixed nodes" 
+           onclick="saveXYfixed()" />
+</div>
+<div id="prefixRemover">
+	<input name="prefixRemoverTxt" 
+		id="rmPreText"
+		type="text" 
+		value="" />
+    <input name="prefixRemoverButton" 
+		type="button" 
+		value="remove prefix in node names" 
+		onclick="removePrefix()" />
+<div id="nodeSearch">
+	<input name="nodeSearchTxt" 
+		id="nodeSearchNm"
+		type="text" 
+		value="Enter node nm"  />
+    <input name="searchNodeButton" 
+		type="button" 
+		value="search" 
+		onclick="nodeSearcher()" />
+</div>
+<div id="gravityChooser">
+	<input name="garvityTxt" 
+		id="gravityVal"
+		type="text" 
+		value="0.05"  />
+    <input name="gravityButton" 
+		type="button" 
+		value="change gravity" 
+		onclick="changeGravity()" />
+</div>
+<form action="/" method="post" enctype="multipart/form-data">
+    <input type="file" name="fixedNodes" />
+    <input type="submit" value="Submit fixed positions csv"/>
+</form>
+</div>
+
+<!-- footer-->      
+  <div id="footer-wrap"><div id="footer">        
+      
+      <p>
+      &copy; 2016 Jacques de Chalendar - Released under the MIT License.
+      </p>
+      
+  </div></div>
+ 
+
+</body>
+</html>

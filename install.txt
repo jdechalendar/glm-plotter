@@ -1,0 +1,12 @@
+# Running this requires a python installation. It was created using python 3.5
+
+# It is best to install the packages in a new environment
+
+# to install the environment with anaconda
+conda create --name glmplotter --file=requirements.txt 
+
+# to install the packages using virtualenvwrapper
+mkvirtualenv -r requirements.txt myenv
+
+# to install the packages using pip
+pip install -r requirements.txt 
