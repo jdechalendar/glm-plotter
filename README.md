@@ -1,6 +1,8 @@
-# glm-plotter
+# Synopsis
+An interactive visualization app for power system networks described in [Gridlab-D](http://www.gridlabd.org/) Model files. Back-end is in Flask and front-end uses D3's force layout.
 
-An example plot of the IEEE 123-node test feeder
+# Example
+Here is a screen shot from a visualisation of the [IEEE 123-node test feeder](https://ewh.ieee.org/soc/pes/dsacom/testfeeders/). The corresponding .glm file is in the example folder.
 ![Alt text](etc/ieee123_example.png?raw=true "IEEE 123 node example")
 
 # Usage
@@ -17,7 +19,7 @@ python glm-plotter.py
 This app parses a .glm (GridLab-D Model) file and displays the corresponding network. The visualization uses the D3 force layout algorithm by Mike Bostock.
 Hovering over a node or link will display its class. The nodes can be dragged to locations. Once they have been dragged, they are fixed. They can be released again with a double-click.
 
-**Options**
+**Available options**
 * Export the position of the nodes (in the html svg component) to a csv
 * Export the position of the fixed nodes to a csv
 * Remove a prefix in the names (in some glm files there will be a common predix that makes visualization cumbersome)
