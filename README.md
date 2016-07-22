@@ -6,14 +6,10 @@ Here is a screen shot from a visualisation of the [IEEE 123-node test feeder](ht
 ![Alt text](etc/ieee123_example.png?raw=true "IEEE 123 node example")
 
 # Usage
-* Install python packages (see install.txt).
-* Change directory to the directory glm-plotter in this repo.
-* Run the glm-plotter.py file.
-```
-cd glm-plotter
-python glm-plotter.py
-```
-* Open a browser and go to http://localhost:5000
+* Install python (version 3.5 was used for development) packages - see install.txt.
+* Change directory `cd glm-plotter` to the directory glm-plotter located in this repository.
+* Run the glm-plotter.py file with `python glm-plotter.py`.
+* Open a browser and go to http://localhost:5000.
 
 # Description
 This app parses a .glm (GridLab-D Model) file and displays the corresponding network. The visualization uses the D3 force layout algorithm by Mike Bostock.
