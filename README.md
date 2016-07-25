@@ -6,9 +6,9 @@ Here is a screen shot from a visualisation of the [IEEE 123-node test feeder](ht
 ![Alt text](etc/ieee123_example.png?raw=true "IEEE 123 node example")
 
 # Usage
-* Install python (version 3.5 was used for development) packages - see install.txt.
-* Change directory `cd glm-plotter` to the directory glm-plotter located in this repository.
-* Run the glm-plotter.py file with `python glm-plotter.py`.
+* Install python packages (version 3.5 was used for development) - see install.txt.
+* From the command line, change directory to the directory glm-plotter located in this repository. `cd path-to-repo/glm-plotter`
+* Run the glm-plotter.py file. `python glm-plotter.py`
 * Open a browser and go to http://localhost:5000.
 
 # Description
