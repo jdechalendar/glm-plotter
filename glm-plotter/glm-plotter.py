@@ -1,3 +1,6 @@
+"""
+    JAC - jdechalendar@stanford.edu
+"""
 from flask import Flask, render_template, request, session
 import os, json
 import GLMparser

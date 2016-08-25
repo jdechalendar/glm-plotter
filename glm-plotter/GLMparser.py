@@ -1,3 +1,6 @@
+"""
+    JAC - jdechalendar@stanford.edu
+"""
 import pandas as pd
 import os
 def readGLM(iFile,verb=0):
