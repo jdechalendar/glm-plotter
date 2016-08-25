@@ -5,9 +5,10 @@ An interactive visualization app for power system networks described in [Gridlab
 Here is a screen shot from a visualisation of the [IEEE 123-node test feeder](https://ewh.ieee.org/soc/pes/dsacom/testfeeders/). The corresponding .glm file is in the example folder.
 ![Alt text](etc/ieee123_example.png?raw=true "IEEE 123 node example")
 
-# Usage
+# Usage - see install.txt for command-line commands
 * Install python packages (version 3.5 was used for development) - see install.txt.
 * From the command line, change directory to the directory glm-plotter located in this repository. `cd path-to-repo/glm-plotter`
+* If the python packages were installed in a virtual environment, activate the virtual environment
 * Run the glm-plotter.py file. `python glm-plotter.py`
 * Open a browser and go to http://localhost:5000.
 

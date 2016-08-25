@@ -1,12 +1,22 @@
-# Running this requires a python installation. It was created using python 3.5
+# Running this requires a python installation. Development used python 3.5
 
-# It is best to install the packages in a new environment
+# It is best to install the packages in a new environment to keep things clean
 
 # to install the environment with anaconda
-conda create --name glmplotter --file=requirements.txt 
+conda create --name myenv --file=requirements.txt 
 
 # to install the packages using virtualenvwrapper
 mkvirtualenv -r requirements.txt myenv
 
 # to install the packages using pip
 pip install -r requirements.txt 
+
+# go the the repo on your computer
+cd local-path-to-repo
+
+# activate virtual evironment
+activate myenv # anaconda
+workon my env # virtualenvwrapper
+
+# run app
+python glm-plotter.py
