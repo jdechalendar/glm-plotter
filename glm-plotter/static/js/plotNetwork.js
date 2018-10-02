@@ -1,4 +1,5 @@
 // JAC - jdechalendar@stanford.edu
+
 var width = 960,
     height = 760;
 
@@ -23,7 +24,8 @@ var zoom = d3.behavior.zoom()
   .on("zoom",zoomed);
 
 function zoomed() {
-  container.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+  container.attr("transform", "translate(" + d3.event.translate + ")scale("
+  + d3.event.scale + ")");
 }
 
 svg.call(zoom).on("dblclick.zoom", null)
@@ -55,26 +57,31 @@ d3.json("/data", function(error, mydata) {
   link = link.data(graph.links)
       .enter().append("g")
       .attr("class", "link")
-   // there is no value property. But varying line-width could be useful in the future - keep
+   // there is no value property. But varying line-width could be useful in the
+   // future - keep
    //   .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-  // Note: I created the following line object in a 'g' container even though it wasn't necessary in case I want to add something to the container later, like an image - or text
+  // Note: I created the following line object in a 'g' container even though
+  // it wasn't necessary in case I want to add something to the container later,
+  // like an image - or text
   var line = link.append("line")
-  
-  // color the lines according to their type as defined by linkType property in the JSON
+
+  // color the lines according to their type as defined by linkType property in
+  // the JSON
   link.each(function(d){
 	if (d.linkType) {
 		d3.select(this).classed(d.linkType, true)
     }
   });
-  
+
   // node 'g' container will contain the node circle and label
   node = node.data(graph.nodes)
       .enter().append("g")
       .attr("class", "node")
 	  .call(drag) // this command enables the dragging feature
 	  .on("dblclick", dblclick);
-    //.on("click",clickAction); // this was removed but can be used to display a hidden chart
-  
+    //.on("click",clickAction); // this was removed but can be used to display
+    // a hidden chart
+
   node.each(function(d){
     if (d.classNm) {
 	  d3.select(this).classed(d.classNm, true)
@@ -93,7 +100,7 @@ d3.json("/data", function(error, mydata) {
   var label = node.append("text")
     .text(function(d) { return d.name })
 	.attr("class", "nodeNm");
-  
+
   // add labels at end so they are on top
   var lineLabel = link.append("g").append("text")
     .text(function(d) { return d.linkType });
@@ -130,7 +137,7 @@ d3.json("/data", function(error, mydata) {
       .attr("x2", function(d) { return d.target.x; })
       .attr("y2", function(d) { return d.target.y; });
     lineLabel.attr("x", function(d) { return (d.source.x+d.target.x)/2+8; })
-      .attr("y", function(d) { return (d.source.y+d.target.y)/2+20; });  
+      .attr("y", function(d) { return (d.source.y+d.target.y)/2+20; });
     circle.attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; });
     label.attr("x", function(d) { return d.x + 8; })
@@ -138,7 +145,7 @@ d3.json("/data", function(error, mydata) {
     nodeg.attr("x", function(d) { return d.x + 8; })
       .attr("y", function(d) { return d.y+20; });
   })
-}); 
+});
 
 // after a node has been moved manually it is now fixed
 function dragstart(d) {
@@ -203,7 +210,7 @@ function saveXYfixed(){
 
   d3.selectAll("text.nodeNm").each(function(d){
     if (d.fixed){
-      txtArr.push(pre+d3.select(this).text());  
+      txtArr.push(pre+d3.select(this).text());
     }
   })
   d3.selectAll("circle").each(function (d){
@@ -227,7 +234,8 @@ function saveXYfixed(){
 }
 function removePrefix(){
 		var pre = document.getElementById('rmPreText').value;
-		d3.selectAll("text.nodeNm").text(function (d){return d.name.replace(pre,"");});
+		d3.selectAll("text.nodeNm").text(
+      function (d){return d.name.replace(pre,"");});
 }
 
 function nodeSearcher(){
