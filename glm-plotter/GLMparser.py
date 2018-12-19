@@ -70,12 +70,17 @@ def readObj(startLine, lines, parent=''):
     The startLine and name fields are always there, the name_oldGLM is optional
     """
     obj = [dict()]
-    currLine = startLine
-    if lines[currLine].strip().startswith('object'):
-        objClass = lines[currLine][7:].split('{')[0].split(':')
+    iLine = startLine
+
+    # remove leading/trailing whitespace and comments
+    currLine = lines[iLine].split('//')[0].strip()
+
+    if currLine.startswith('object'):
+        objClass = currLine[len('object '):].split('{')[0].split(':')
         obj[0]['class'] = objClass[0].strip()
-        obj[0]['startLine'] = str(currLine)
-        # old syntax for glm files
+        obj[0]['startLine'] = str(iLine)
+
+        # old syntax for glm files:
         # there can be an id for the object after a colon
         if len(objClass) > 1 and objClass[1].strip():
             # consider this is the name for now. If there is a name later on it
@@ -83,49 +88,56 @@ def readObj(startLine, lines, parent=''):
             obj[0]['name_oldGLM'] = objClass[1].strip()
         if len(parent) > 0:
             obj[0]['parent'] = parent
+
         while True:
-            currLine += 1
-            if (lines[currLine].find('}') > -1
-                    and not lines[currLine].find('{') > -1):
-                break
-            if lines[currLine].strip().startswith('object'):
+            iLine += 1
+
+            # remove leading/trailing whitespace and comments
+            currLine = lines[iLine].split('//')[0].strip()
+            print("Parsing %s" % currLine)
+
+            # ignore end of object / comment / opening bracket
+            if (currLine.find('}') > -1 and not currLine.find('{') > -1):
+                break  # done parsing object
+            if (len(currLine) == 0 or currLine == "{"):
+                continue  # done parsing line
+
+            if currLine.startswith('object'):  # Reading another object
                 if 'name' in obj[0]:
-                    child, currLine = readObj(
-                        currLine, lines, parent=obj[0]['name'])
-                    currLine = currLine
-                    obj.extend(child)
+                    parent = obj[0]['name']
                 elif 'name_oldGLM' in obj[0]:
-                    child, currLine = readObj(
-                        currLine, lines, parent=obj[0]['name_oldGLM'])
-                    currLine = currLine
-                    obj.extend(child)
+                    parent=obj[0]['name_oldGLM']
                 else:
-                    child, currLine = readObj(
-                        currLine, lines, parent=obj[0]['startLine'])
-                    currLine = currLine
-                    obj.extend(child)
+                    parent=obj[0]['startLine']
+                child, iLine = readObj(iLine, lines, parent=parent)
+                obj.extend(child)
+
             else:
-                if not lines[currLine].strip().startswith('//'):
-                    tmp = lines[currLine].split(';')[0].split()
-                    if len(tmp) > 0:
-                        if len(tmp) == 2:
-                            obj[0][tmp[0]] = tmp[1].strip('"')
-                        # tmp[0].lower().startswith('rated')
-                        # or tmp[0].lower().startswith('reconnect_time'):
-                        # second case means there can be a unit
-                        elif len(tmp) == 3:
-                            # we expect a unit
-                            obj[0][tmp[0]] = tmp[1:]
-                        else:
-                            print(str(currLine) + ' - Not expected')
-                            print(lines[currLine])
+                tmp = lines[iLine].split(';')[0].split()
+
+                if len(tmp) > 0:
+                    if len(tmp) == 2:
+                        obj[0][tmp[0]] = tmp[1].strip('"')
+                    # tmp[0].lower().startswith('rated')
+                    # or tmp[0].lower().startswith('reconnect_time'):
+                    # second case means there can be a unit
+                    elif len(tmp) == 3:
+                        # we expect a unit
+                        obj[0][tmp[0]] = tmp[1:]
+                    else:
+                        print('Line %d - Not expected' % iLine)
+                        print(lines[iLine])
+
+    # Check the name field is set for all objects we parsed
     for a in obj:
         if 'name' not in a:
             if 'name_oldGLM' in a:
                 a['name'] = a['name_oldGLM']
             else:
                 a['name'] = a['startLine']
-    return obj, currLine
+    print(obj)
+
+    return obj, iLine
 
 
 def readClock(lines, currLine):

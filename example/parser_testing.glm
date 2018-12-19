@@ -1,0 +1,24 @@
+object meter {
+    name "PIN6804_topo";
+    phases AN;
+    bustype PQ;
+    nominal_voltage 400.0V;
+};
+
+// comment 1
+object meter // comment 2
+{ // comment 3
+    name "PIN6804_topo2";
+    phases AN;
+    bustype PQ;
+    nominal_voltage 400.0V;
+};
+
+   object meter { // whitespace before object
+    name "PIN6804_topo3";
+  phases AN;
+    bustype PQ;
+    nominal_voltage 400.0V;  // comment 4
+};
+
+// comment 5
