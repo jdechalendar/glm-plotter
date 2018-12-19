@@ -94,7 +94,6 @@ def readObj(startLine, lines, parent=''):
 
             # remove leading/trailing whitespace and comments
             currLine = lines[iLine].split('//')[0].strip()
-            print("Parsing %s" % currLine)
 
             # ignore end of object / comment / opening bracket
             if (currLine.find('}') > -1 and not currLine.find('{') > -1):
@@ -135,7 +134,6 @@ def readObj(startLine, lines, parent=''):
                 a['name'] = a['name_oldGLM']
             else:
                 a['name'] = a['startLine']
-    print(obj)
 
     return obj, iLine
 
