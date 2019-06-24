@@ -11,7 +11,6 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    print(session)
     if request.method == 'POST':
         if (('fixedNodes' in request.files) and request.files['fixedNodes']
             and (request.files['fixedNodes'].filename

@@ -2,6 +2,7 @@
 JAC - jdechalendar@stanford.edu
 """
 import pandas as pd
+import re
 
 
 def readGLM(iFile, verb=0):
@@ -112,7 +113,8 @@ def readObj(startLine, lines, parent=''):
                 obj.extend(child)
 
             else:
-                tmp = lines[iLine].split(';')[0].split()
+                data = lines[iLine].split(';')[0].strip()  # only take stuff before ';'
+                tmp = re.split('''\t| (?=(?:[^'"]|'[^']*'|"[^"]*")*$)''', data)
 
                 if len(tmp) > 0:
                     if len(tmp) == 2:
